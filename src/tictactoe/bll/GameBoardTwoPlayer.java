@@ -68,6 +68,9 @@ public class GameBoardTwoPlayer implements IGameModel {
     @Override
     public boolean play(int col, int row) {
         //TODO Implement this method
+
+        
+
         return true;
     }
 
