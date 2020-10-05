@@ -1,5 +1,7 @@
 package tictactoe.bll;
 
+import java.util.Arrays;
+
 /**
  * The GameBoardTwoPlayer class is the mandatory implementation for the TicTacToe assignment.
  * It is used for games where there are two human players.
@@ -8,12 +10,24 @@ public class GameBoardTwoPlayer implements IGameModel {
 
     private int currentPlayer;
     private int lastPlayer;
-    private int[][] rowsPlayed;
+    private int rowsPlayed[][];
+    private int roundsPlayed;
+    private int winPlayer;
 
     protected GameBoardTwoPlayer() {
+        resetGame();
+    }
+
+    public void resetGame(){
         currentPlayer = 0;
         lastPlayer = 1;
+        roundsPlayed = 0;
+        winPlayer = -1;
 
+        rowsPlayed = new int[3][3];
+        for (int[] row : rowsPlayed){
+            Arrays.fill(row, -1);
+        }
     }
 
     /**
@@ -69,10 +83,21 @@ public class GameBoardTwoPlayer implements IGameModel {
     @Override
     public boolean play(int col, int row) {
         //TODO Implement this method
+        int n = rowsPlayed[row][col];
+        if(this.isGameOver()){
+            return false;
+        }
+        if (n == -1){
+            rowsPlayed[row][col] = currentPlayer;
+            roundsPlayed++;
+            return true;
+        } else {
+            return false;
+        }
 
 
 
-        return true;
+
     }
 
     /**
