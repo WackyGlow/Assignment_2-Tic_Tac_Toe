@@ -8,6 +8,7 @@ public class GameBoardTwoPlayer implements IGameModel {
 
     private int currentPlayer;
     private int lastPlayer;
+    private int[][] rowsPlayed;
 
     protected GameBoardTwoPlayer() {
         currentPlayer = 0;
@@ -69,7 +70,7 @@ public class GameBoardTwoPlayer implements IGameModel {
     public boolean play(int col, int row) {
         //TODO Implement this method
 
-        
+
 
         return true;
     }
@@ -103,6 +104,7 @@ public class GameBoardTwoPlayer implements IGameModel {
     @Override
     public void newGame() {
         //TODO Implement this method
+
     }
 
 }
