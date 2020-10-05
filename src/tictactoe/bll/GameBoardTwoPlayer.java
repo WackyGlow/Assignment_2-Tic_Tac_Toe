@@ -6,7 +6,12 @@ package tictactoe.bll;
  */
 public class GameBoardTwoPlayer implements IGameModel {
 
+    private int currentPlayer;
+    private int lastPlayer;
+
     protected GameBoardTwoPlayer() {
+        currentPlayer = 0;
+        lastPlayer = 1;
 
     }
 
@@ -18,7 +23,36 @@ public class GameBoardTwoPlayer implements IGameModel {
     @Override
     public int getNextPlayer() {
         //TODO Implement this method
-        return 0;
+
+        int player0 = 0;
+        int player1 = 1;
+
+        //Switch between players when taking their turn.
+        switch (currentPlayer){
+
+
+
+            case 0:
+                currentPlayer = lastPlayer;
+                //no idea how it works but it works so i'm sticking with it.
+                lastPlayer = player1;
+                return 0;
+
+            case 1:
+
+                currentPlayer = lastPlayer;
+                lastPlayer = player0;
+                return 1;
+
+
+            default:
+                return Integer.parseInt(null);
+
+
+
+        }
+
+
     }
 
     /**
