@@ -9,7 +9,7 @@ import java.util.Arrays;
 public class GameBoardTwoPlayer implements IGameModel {
 
     private int currentPlayer;
-    private int cordsPlayed[][];
+    private int[][] cordsPlayed;
     private int roundsPlayed;
     private int winPlayer;
 
@@ -86,9 +86,16 @@ public class GameBoardTwoPlayer implements IGameModel {
     @Override
     public boolean isGameOver() {
         //TODO Implement this method
-        return false;
+        if (roundsPlayed < 9) {
+            if (checkDiag() == -1 && checkHor() == -1 && checkVert() == -1) {
+                return false;
+            } else {
+                return true;
+            }
+        } else {
+            return true;
+        }
     }
-
     /**
      * Gets the id of the winner, -1 if its a draw.
      *
@@ -98,7 +105,7 @@ public class GameBoardTwoPlayer implements IGameModel {
     public int getWinner() {
         //TODO Implement this method
         checkWinners();
-        return -1;
+        return winPlayer;
     }
 
     private void checkWinners() {
@@ -108,13 +115,26 @@ public class GameBoardTwoPlayer implements IGameModel {
     }
 
     private int checkDiag() {
-
+        return -1;
     }
 
     private int checkVert() {
+        return -1;
     }
 
     private int checkHor() {
+        boolean gameWon = false;
+        for (int[] row: cordsPlayed) {
+            if ((row[0] == 0 && row[1] == 0 && row[2] == 0) || (row[0] == 1 && row[1] == 1 && row[2] == 1)) {
+                gameWon = true;
+                winPlayer = row[0];
+            }
+        }
+        if(gameWon) {
+            return winPlayer;
+        } else {
+            return -1;
+        }
     }
 
     /**
