@@ -9,8 +9,7 @@ import java.util.Arrays;
 public class GameBoardTwoPlayer implements IGameModel {
 
     private int currentPlayer;
-    private int lastPlayer;
-    private int rowsPlayed[][];
+    private int cordsPlayed[][];
     private int roundsPlayed;
     private int winPlayer;
 
@@ -20,12 +19,11 @@ public class GameBoardTwoPlayer implements IGameModel {
 
     public void resetGame(){
         currentPlayer = 0;
-        lastPlayer = 1;
         roundsPlayed = 0;
         winPlayer = -1;
 
-        rowsPlayed = new int[3][3];
-        for (int[] row : rowsPlayed){
+        cordsPlayed = new int[3][3];
+        for (int[] row : cordsPlayed){
             Arrays.fill(row, -1);
         }
     }
@@ -37,35 +35,8 @@ public class GameBoardTwoPlayer implements IGameModel {
      */
     @Override
     public int getNextPlayer() {
-        //TODO Implement this method
-
-        int player0 = 0;
-        int player1 = 1;
-
-        //Switch between players when taking their turn.
-        switch (currentPlayer){
-
-
-
-            case 0:
-                currentPlayer = lastPlayer;
-                //no idea how it works but it works so i'm sticking with it.
-                lastPlayer = player1;
-                return 0;
-
-            case 1:
-
-                currentPlayer = lastPlayer;
-                lastPlayer = player0;
-                return 1;
-
-
-            default:
-                return Integer.parseInt(null);
-
-
-
-        }
+        //TODO Implement this method * DONE *
+        return (currentPlayer == 0 ? 0 : 1);
 
 
     }
@@ -82,13 +53,19 @@ public class GameBoardTwoPlayer implements IGameModel {
      */
     @Override
     public boolean play(int col, int row) {
-        //TODO Implement this method
-        int n = rowsPlayed[row][col];
+        //TODO Implement this method * DONE *
+        int n = cordsPlayed[row][col];
         if(this.isGameOver()){
             return false;
         }
         if (n == -1){
-            rowsPlayed[row][col] = currentPlayer;
+            cordsPlayed[row][col] = currentPlayer;
+
+            if (currentPlayer == 0) {
+                currentPlayer = 1;
+            } else {
+                currentPlayer = 0;
+            }
             roundsPlayed++;
             return true;
         } else {
@@ -120,7 +97,24 @@ public class GameBoardTwoPlayer implements IGameModel {
     @Override
     public int getWinner() {
         //TODO Implement this method
+        checkWinners();
         return -1;
+    }
+
+    private void checkWinners() {
+        checkHor();
+        checkVert();
+        checkDiag();
+    }
+
+    private int checkDiag() {
+
+    }
+
+    private int checkVert() {
+    }
+
+    private int checkHor() {
     }
 
     /**
@@ -128,7 +122,8 @@ public class GameBoardTwoPlayer implements IGameModel {
      */
     @Override
     public void newGame() {
-        //TODO Implement this method
+        //TODO Implement this method * DONE*
+        resetGame();
 
     }
 
