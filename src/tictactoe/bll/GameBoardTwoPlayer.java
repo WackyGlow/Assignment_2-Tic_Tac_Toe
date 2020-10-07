@@ -7,7 +7,22 @@ package tictactoe.bll;
 public class GameBoardTwoPlayer implements IGameModel {
 
     protected GameBoardTwoPlayer() {
+<<<<<<< Updated upstream
 
+=======
+        resetGame();
+    }
+
+    public void resetGame() {
+        currentPlayer = 0;
+        roundsPlayed = 0;
+        winPlayer = -1;
+
+        cordsPlayed = new int[3][3];
+        for (int[] row : cordsPlayed) {
+            Arrays.fill(row, -1);
+        }
+>>>>>>> Stashed changes
     }
 
     /**
@@ -33,8 +48,31 @@ public class GameBoardTwoPlayer implements IGameModel {
      */
     @Override
     public boolean play(int col, int row) {
+<<<<<<< Updated upstream
         //TODO Implement this method
         return true;
+=======
+        //TODO Implement this method * DONE *
+        int n = cordsPlayed[row][col];
+        if (this.isGameOver()) {
+            return false;
+        }
+        if (n == -1) {
+            cordsPlayed[row][col] = currentPlayer;
+
+            if (currentPlayer == 0) {
+                currentPlayer = 1;
+            } else {
+                currentPlayer = 0;
+            }
+            roundsPlayed++;
+            return true;
+        } else {
+            return false;
+        }
+
+
+>>>>>>> Stashed changes
     }
 
     /**
@@ -57,7 +95,51 @@ public class GameBoardTwoPlayer implements IGameModel {
     @Override
     public int getWinner() {
         //TODO Implement this method
+<<<<<<< Updated upstream
         return -1;
+=======
+        checkWinners();
+        return winPlayer;
+    }
+
+    private void checkWinners() {
+        checkHor();
+        checkVert();
+        checkDiag();
+    }
+
+    private int checkDiag() {
+        boolean gameWon = false;
+        for (int i = 0; i < cordsPlayed.length; i++) {
+            if ((cordsPlayed[i][0] == 0 && cordsPlayed[i][1] == 0 && cordsPlayed[i][2] == 0) || (cordsPlayed[i][2] == 0 && cordsPlayed[i][1] == 0 && cordsPlayed[i][0] == 0)
+                    || (cordsPlayed[i][0] == 1 && cordsPlayed[i][1] == 1 && cordsPlayed[i][2] == 1) || (cordsPlayed[i][2] == 1 && cordsPlayed[i][1] == 1 && cordsPlayed[i][0] == 1)) {
+                gameWon = true;
+                winPlayer = cordsPlayed[i][1];
+            }
+        }
+        if(gameWon) {
+            return winPlayer;
+        } else {
+            return -1;
+        }
+    }
+
+
+    private int checkVert() {
+        boolean gameWon = false;
+        for (int i = 0; i < cordsPlayed.length; i++) {
+            if ((cordsPlayed[0][i] == 0 && cordsPlayed[1][i] == 0 && cordsPlayed[2][i] == 0)
+                    || (cordsPlayed[0][i] == 1 && cordsPlayed[1][i] == 1 && cordsPlayed[2][i] == 1)) {
+                gameWon = true;
+                winPlayer = cordsPlayed[0][i];
+            }
+        }
+        if(gameWon) {
+            return winPlayer;
+        } else {
+            return -1;
+        }
+>>>>>>> Stashed changes
     }
 
     /**
