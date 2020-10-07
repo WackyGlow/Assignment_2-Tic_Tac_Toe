@@ -85,7 +85,7 @@ public class GameBoardTwoPlayer implements IGameModel {
      */
     @Override
     public boolean isGameOver() {
-        //TODO Implement this method
+        //TODO Implement this method *DONE*
         if (roundsPlayed < 9) {
             if (checkDiag() == -1 && checkHor() == -1 && checkVert() == -1) {
                 return false;
@@ -103,7 +103,7 @@ public class GameBoardTwoPlayer implements IGameModel {
      */
     @Override
     public int getWinner() {
-        //TODO Implement this method
+        //TODO Implement this method *DONE*
         checkWinners();
         return winPlayer;
     }
@@ -115,11 +115,31 @@ public class GameBoardTwoPlayer implements IGameModel {
     }
 
     private int checkDiag() {
-        return -1;
+        if ((cordsPlayed[0][0] == 0 && cordsPlayed[1][1] == 0 && cordsPlayed[2][2] == 0) || (cordsPlayed[0][0] == 1 && cordsPlayed[1][1] == 1 && cordsPlayed[2][2] == 1)){
+            winPlayer = cordsPlayed[0][0];
+            return winPlayer;
+        } else if ((cordsPlayed[2][0] == 0 && cordsPlayed[1][1] == 0 && cordsPlayed[0][2] == 0) || (cordsPlayed[2][0] == 1 && cordsPlayed[1][1] == 1 && cordsPlayed[0][2] == 1)){
+            winPlayer = cordsPlayed[2][0];
+            return winPlayer;
+        } else {
+            return -1;
+        }
     }
 
     private int checkVert() {
-        return -1;
+        boolean gameWon = false;
+        for (int i = 0; i < cordsPlayed.length; i++) {
+            if ((cordsPlayed[0][i] == 0 && cordsPlayed[1][i] == 0 && cordsPlayed[2][i] == 0)
+                    || (cordsPlayed[0][i] == 1 && cordsPlayed[1][i] == 1 && cordsPlayed[2][i] == 1)) {
+                gameWon = true;
+                winPlayer = cordsPlayed[0][i];
+            }
+        }
+        if (gameWon) {
+            return winPlayer;
+        } else {
+            return -1;
+        }
     }
 
     private int checkHor() {

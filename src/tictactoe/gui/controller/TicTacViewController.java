@@ -128,10 +128,10 @@ public class TicTacViewController implements Initializable {
         String message = "";
         switch (winner) {
             case -1:
-                message = "It's a draw :-(";
+                message = "It's a draw";
                 break;
             default:
-                message = "Player " + winner + " wins!!!";
+                message = "Player " + winner + " wins!";
                 break;
         }
         lblPlayer.setText(message);
