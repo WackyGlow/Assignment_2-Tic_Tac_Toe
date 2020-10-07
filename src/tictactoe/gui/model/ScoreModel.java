@@ -28,17 +28,17 @@ public class ScoreModel {
             case "X":
                 p0WinAmount++;
                 if (p0WinAmount == 1){
-                    getWinners().add("Player 0: " + p0WinAmount + " Win!");
+                    getWinners().add("Player0: " + p0WinAmount + " Win!");
                 } else {
-                    getWinners().add("Player 0: " + p0WinAmount + " Wins!");
+                    getWinners().add("Player0: " + p0WinAmount + " Wins!");
                 }
                 break;
             case "O":
                 p1WinAmount++;
                 if (p1WinAmount == 1){
-                    getWinners().add("Player 1: " + p1WinAmount + " Win!");
+                    getWinners().add("Player1: " + p1WinAmount + " Win!");
                 } else {
-                    getWinners().add("Player 1: " + p1WinAmount + " Wins!");
+                    getWinners().add("Player1: " + p1WinAmount + " Wins!");
                 }
                 break;
         }
